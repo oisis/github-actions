@@ -3,11 +3,17 @@ name: Test GitHub CI aka Github Actions
 
 on: [push]
 
+env:
+  SOME_ENV_1: some val1
+  SOME_ENV_2: some_val2
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out git repository
+      uses: actions/checkout@v2
 
     - name: Lets print OS env - run command in one line
       run: "env | sort"
