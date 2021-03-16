@@ -8,27 +8,24 @@ env:
   IMAGE_VERSION_SUFFIX: oisis
 
 jobs:
-  check-build-env:
+  check-build-environment:
     runs-on: ubuntu-latest
     steps:
-    - name: Lets print OS env - run command in one line
+    - name: Print OS env
       run: "env | sort"
 
-    - name: Run a multi-line script
+    - name: Get info about uptime and current user
       run: |
         #!/bin/bash
         uptime
         whoami
 
-    - name: Get some info about docker
+    - name: Get info about docker
       run: |-
         #!/bin/bash
         docker version
         docker images
         docker ps
-
-    - name: Print GitHub secret
-      run: "echo ${{ secrets.SECRET_1 }}"
 
   build:
     runs-on: ubuntu-latest
