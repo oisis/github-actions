@@ -12,12 +12,12 @@ commonLabels:
   env: dev
 
 commonAnnotations:
-  pgadmin_version: "4.22"
+  pgadmin_version: "IMAGE_VERSION_PLACEHOLDER"
 
 imageTags:
   - name: dpage/pgadmin4:stable
     newName: dpage/pgadmin4
-    newTag: "4.22"
+    newTag: "IMAGE_VERSION_PLACEHOLDER"
 
 configMapGenerator:
 - name: pgadmin-envs
