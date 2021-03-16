@@ -7,12 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: "echo Hello, world!"
+    - uses: actions/checkout@v2
+
+    - name: Lets print OS env - run command in one line
+      run: "env | sort"
+
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-    - name: Lets print OS env
-      run: "env | sort"
+        #!/bin/bash
+        ls -al /
+        uptime
+        whoami
