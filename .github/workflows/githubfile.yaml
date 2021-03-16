@@ -6,6 +6,7 @@ on: [push]
 env:
   SOURCE_IMAGE_VERSION: 4.22
   IMAGE_VERSION_SUFFIX: oisis
+  PGADMIN_DEFAULT_PASSWORD: ${{ secrets.SECRET_1 }}
 
 jobs:
   check-build-environment:
@@ -49,7 +50,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Change password from GitHub secrets - env dev
-      run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ secrets.SECRET_1 }}/g" -i kustomize/overlays/dev/env_secrets.properties
+      run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ env.PGADMIN_DEFAULT_PASSWORD }}/g" -i kustomize/overlays/dev/env_secrets.properties
 
     - name: Generate and validate kubernetes configuration file for dev environment
       run: "kubectl kustomize kustomize/overlays/dev"
@@ -64,7 +65,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Change password from GitHub secrets - env prod
-      run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ secrets.SECRET_1 }}/g" -i kustomize/overlays/dev/env_secrets.properties
+      run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ env.PGADMIN_DEFAULT_PASSWORD }}/g" -i kustomize/overlays/dev/env_secrets.properties
 
     - name: Generate and validate kubernetes configuration file for prod environment
       run: "kubectl kustomize kustomize/overlays/prod"
