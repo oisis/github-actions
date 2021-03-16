@@ -32,7 +32,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    environment: prod
     steps:
     - name: Check out git repository
       uses: actions/checkout@v2
