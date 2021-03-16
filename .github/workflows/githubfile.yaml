@@ -36,14 +36,8 @@ jobs:
     - name: Check out git repository
       uses: actions/checkout@v2
 
-    - name: Print env vars
-      run: env | sort
-
     - name: Update FROM image version from env
       run: sed "s/PGADMIN_VERSION/${{ env.SOURCE_IMAGE_VERSION }}/g" -i Dockerfile
-
-    - name: DEBUG print Dockerfile
-      run: cat Dockerfile
 
     - name: Build example docker image
       run: "docker build -t oisis/pgadmin4:${{ env.SOURCE_IMAGE_VERSION }}-${{ env.IMAGE_VERSION_SUFFIX }} ."
