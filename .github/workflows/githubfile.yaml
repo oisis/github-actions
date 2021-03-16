@@ -38,7 +38,7 @@ jobs:
 
     - name: Build example docker image
       run: |-
-        docker build -t some-docker-image:1.0.0 .
+        docker build -t oisis/pgadmin4:1.0.0 .
   
   deploy-to-dev:
     runs-on: ubuntu-latest

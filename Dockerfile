@@ -1,3 +1,4 @@
-FROM ubuntu:20.04
+FROM dpage/pgadmin4:4.22
 
-RUN apt update
+LABEL maintainer="OiSiS"
+
