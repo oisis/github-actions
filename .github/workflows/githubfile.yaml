@@ -55,6 +55,9 @@ jobs:
     env:
       SECRET_1: ${{ secrets.SECRET_1 }}
     steps:
+    - name: Check out git repository
+      uses: actions/checkout@v2
+
     - name: Print GitHub secret SECRET_1 with value secret_1_dev
       run: "echo $env:SECRET_1"
 
@@ -67,6 +70,9 @@ jobs:
     env:
       SECRET_1: ${{ secrets.SECRET_1 }}
     steps:
+    - name: Check out git repository
+      uses: actions/checkout@v2
+
     - name: Print GitHub secret SECRET_1 with value secret_1_prod
       run: "echo $env:SECRET_1"
 
