@@ -16,7 +16,7 @@ commonAnnotations:
 
 imageTags:
   - name: dpage/pgadmin4:stable
-    newName: dpage/pgadmin4
+    newName: IMAGE_NAME_PLACEHOLDER
     newTag: "IMAGE_VERSION_PLACEHOLDER"
 
 configMapGenerator:

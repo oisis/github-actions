@@ -52,6 +52,9 @@ jobs:
     - name: Change password from GitHub secrets - env dev
       run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ env.PGADMIN_DEFAULT_PASSWORD }}/g" -i kustomize/overlays/dev/env_secrets.properties
 
+    - name: Update image name
+      run: sed "s/IMAGE_NAME_PLACEHOLDER/oisis\/pgadmin4/g" -i kustomize/overlays/dev/kustomization.yaml
+
     - name: Update image version
       run: sed "s/IMAGE_VERSION_PLACEHOLDER/${{ env.SOURCE_IMAGE_VERSION }}-${{ env.IMAGE_VERSION_SUFFIX }}/g" -i kustomize/overlays/dev/kustomization.yaml
 
@@ -69,6 +72,9 @@ jobs:
 
     - name: Change password from GitHub secrets - env prod
       run: sed "s/PGADMIN_DEFAULT_PASSWORD_PLACEHOLDER/${{ env.PGADMIN_DEFAULT_PASSWORD }}/g" -i kustomize/overlays/prod/env_secrets.properties
+
+    - name: Update image name
+      run: sed "s/IMAGE_NAME_PLACEHOLDER/oisis\/pgadmin4/g" -i kustomize/overlays/prod/kustomization.yaml
 
     - name: Update image version
       run: sed "s/IMAGE_VERSION_PLACEHOLDER/${{ env.SOURCE_IMAGE_VERSION }}-${{ env.IMAGE_VERSION_SUFFIX }}/g" -i kustomize/overlays/prod/kustomization.yaml
