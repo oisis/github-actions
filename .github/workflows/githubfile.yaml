@@ -42,6 +42,10 @@ jobs:
     - name: Lets check in next build if httpd container is still running
       run: "docker ps"
 
+    - name: Print GitHub secret
+      run: "echo ${TAJNE_HASLO_DO_KUBERNETESA}"
+
+
     - name: Check if we have kubectl already installed on build node
       run: "kubectl version"
 
