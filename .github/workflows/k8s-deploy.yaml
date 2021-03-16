@@ -10,7 +10,7 @@ jobs:
     - name: Checkout git repo with source code
       uses: actions/checkout@v2
 
-    - name: Check if kubectl is on place
+    - name: Check if kubectl is in place
       run: "kubectl version"
     
     - name: Generate and validate kubernetes configuration file for dev environment
