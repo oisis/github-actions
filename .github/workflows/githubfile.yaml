@@ -5,7 +5,7 @@ on: [push]
 
 env:
   SOURCE_IMAGE_VERSION: 4.22
-  PGADMIN_NEW_IMAGE_VERSION: $SOURCE_IMAGE_VERSION-oisis
+  IMAGE_VERSION_SUFFIX: oisis
 
 jobs:
   check-build-env:
@@ -39,8 +39,11 @@ jobs:
     - name: Update FROM image version from env
       run: sed "s/pgadmin4:VERSION/pgadmin4:$PGADMIN_NEW_IMAGE_VERSION/g" -i Dockerfile
 
+    - name: DEBUG print Dockerfile
+      run: cat Dockerfile
+
     - name: Build example docker image
-      run: "docker build -t oisis/pgadmin4:$PGADMIN_NEW_IMAGE_VERSION ."
+      run: "docker build -t oisis/pgadmin4:$SOURCE_IMAGE_VERSION-$IMAGE_VERSION_SUFFIX ."
   
   deploy-to-dev:
     runs-on: ubuntu-latest
