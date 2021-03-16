@@ -4,7 +4,8 @@ name: Test GitHub CI aka Github Actions
 on: [push]
 
 env:
-  PGADMINPROJECT_ID4_IMAGE_VERSION: 4.22 
+  SOURCE_IMAGE_VERSION: 4.22
+  PGADMIN_NEW_IMAGE_VERSION: $SOURCE_IMAGE_VERSION-oisis
 
 jobs:
   check-build-env:
@@ -37,7 +38,7 @@ jobs:
 
     - name: Build example docker image
       run: |-
-        docker build -t oisis/pgadmin4:$PGADMINPROJECT_ID4_IMAGE_VERSION .
+        docker build -t oisis/pgadmin4:$PGADMIN_NEW_IMAGE_VERSION .
   
   deploy-to-dev:
     runs-on: ubuntu-latest
