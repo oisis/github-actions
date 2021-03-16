@@ -24,3 +24,7 @@ jobs:
         ls -al /
         uptime
         whoami
+
+    - name: Build example docker image
+      run: |-
+        docker build -t some-docker-image:1.0.0 .
