@@ -40,7 +40,7 @@ jobs:
       run: env | sort
 
     - name: Update FROM image version from env
-      run: sed "s/PGADMIN_VERSION/${PGADMIN_NEW_IMAGE_VERSION}/g" -i Dockerfile
+      run: sed "s/PGADMIN_VERSION/${{ env.SOURCE_IMAGE_VERSION }}/g" -i Dockerfile
 
     - name: DEBUG print Dockerfile
       run: cat Dockerfile
