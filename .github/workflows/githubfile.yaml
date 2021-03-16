@@ -34,4 +34,8 @@ jobs:
         docker version
         docker images
         docker ps
-        
+    
+    - name: Run some docker container in pipeline
+      run: |-
+        docker run --name httpd httpd
+        docker ps -a
