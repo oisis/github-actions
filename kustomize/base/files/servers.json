@@ -1,0 +1,24 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Example-server1",
+            "Group": "group1",
+            "Port": 5432,
+            "Username": "pguser",
+            "Host": "pghost",
+            "SSLMode": "prefer",
+            "Role": "pguser",
+            "MaintenanceDB": "postgres",
+        },
+        "2": {
+          "Name": "Example-server2",
+          "Group": "group2",
+          "Port": 5432,
+          "Username": "pguser",
+          "Host": "pghost",
+          "SSLMode": "prefer",
+          "Role": "pguser",
+          "MaintenanceDB": "postgres",
+        }
+    }
+}

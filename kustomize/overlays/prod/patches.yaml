@@ -1,0 +1,20 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pgadmin
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: pgadmin-prod.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: pgadmin
+          servicePort: web
+        path: /
+  tls:
+  - hosts:
+    - pgadmin-prod.example.com
+    secretName: pgadmin-prod-tls

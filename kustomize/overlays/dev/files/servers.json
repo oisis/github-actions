@@ -1,0 +1,24 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Server1-dev",
+            "Group": "Env-Dev",
+            "Port": 5432,
+            "Username": "pguser",
+            "Host": "pghost",
+            "SSLMode": "prefer",
+            "Role": "pguser",
+            "MaintenanceDB": "postgres",
+        },
+        "2": {
+          "Name": "Server2-dev",
+          "Group": "Env-Dev",
+          "Port": 5432,
+          "Username": "pguser",
+          "Host": "pghost",
+          "SSLMode": "prefer",
+          "Role": "pguser",
+          "MaintenanceDB": "postgres",
+        }
+    }
+}

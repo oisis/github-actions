@@ -1,0 +1,37 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../../base
+
+namespace: pgadmin
+
+commonLabels:
+  namespace: pgadmin
+  env: dev
+
+commonAnnotations:
+  pgadmin_version: "4.22"
+
+imageTags:
+  - name: dpage/pgadmin4:stable
+    newName: dpage/pgadmin4
+    newTag: "4.22"
+
+configMapGenerator:
+- name: pgadmin-envs
+  behavior: merge
+  env: env.properties
+- name: pgadmin-server-config
+  behavior: replace
+  files:
+    - files/servers.json
+
+secretGenerator:
+- name: pgadmin-secrets
+  behavior: merge
+  env: env_secrets.properties
+
+patchesStrategicMerge:
+- patches.yaml
