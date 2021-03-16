@@ -40,14 +40,6 @@ jobs:
     - name: Build example docker image
       run: |-
         docker build -t some-docker-image:1.0.0 .
-        
-    - name: Run some docker container in pipeline
-      run: |-
-        docker run --name httpd -d --rm httpd
-        docker ps -a
-
-    - name: Check if we have kubectl already installed on build node
-      run: "kubectl version"
   
   deploy-to-dev:
     runs-on: ubuntu-latest
