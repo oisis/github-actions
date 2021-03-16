@@ -28,7 +28,7 @@ jobs:
         docker ps
 
     - name: Print GitHub secret
-      run: "echo ${SECRET_1}"
+      run: "echo ${{ secrets.SECRET_1 }}"
 
   build:
     runs-on: ubuntu-latest
@@ -52,9 +52,11 @@ jobs:
   deploy-to-dev:
     runs-on: ubuntu-latest
     environment: dev
+    env:
+      SECRET_1: ${{ secrets.SECRET_1 }}
     steps:
     - name: Print GitHub secret SECRET_1 with value secret_1_dev
-      run: "echo ${{ SECRET_1 }}"
+      run: "echo $env:SECRET_1"
 
     - name: Generate and validate kubernetes configuration file for dev environment
       run: "kubectl kustomize kustomize/overlays/dev"
@@ -62,9 +64,11 @@ jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
     environment: prod
+    env:
+      SECRET_1: ${{ secrets.SECRET_1 }}
     steps:
     - name: Print GitHub secret SECRET_1 with value secret_1_prod
-      run: "echo ${{ SECRET_1 }}"
+      run: "echo $env:SECRET_1"
 
     - name: Generate and validate kubernetes configuration file for prod environment
       run: "kubectl kustomize kustomize/overlays/prod"
