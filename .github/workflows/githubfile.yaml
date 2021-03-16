@@ -42,3 +42,6 @@ jobs:
     
     - name: Lets check in next build if httpd container is still running
       run: "docker ps"
+
+    - name: Check if we have kubectl already installed on build node
+      run: "kubectl version"
