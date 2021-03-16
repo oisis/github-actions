@@ -8,13 +8,9 @@ env:
   SOME_ENV_2: some_val2
 
 jobs:
-  build:
+  check-build-env:
     runs-on: ubuntu-latest
-    environment: prod
     steps:
-    - name: Check out git repository
-      uses: actions/checkout@v2
-
     - name: Lets print OS env - run command in one line
       run: "env | sort"
 
@@ -24,33 +20,51 @@ jobs:
         uptime
         whoami
 
-    - name: Build example docker image
-      run: |-
-        docker build -t some-docker-image:1.0.0 .
-    
     - name: Get some info about docker
       run: |-
+        #!/bin/bash
         docker version
         docker images
         docker ps
-    
+
+    - name: Print GitHub secret
+      run: "echo ${SECRET_1}"
+
+  build:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: Check out git repository
+      uses: actions/checkout@v2
+
+    - name: Build example docker image
+      run: |-
+        docker build -t some-docker-image:1.0.0 .
+        
     - name: Run some docker container in pipeline
       run: |-
         docker run --name httpd -d --rm httpd
         docker ps -a
-    
-    - name: Lets check in next build if httpd container is still running
-      run: "docker ps"
-
-    - name: Print GitHub secret
-      run: "echo ${TAJNE_HASLO_DO_KUBERNETESA}"
-
 
     - name: Check if we have kubectl already installed on build node
       run: "kubectl version"
+  
+  deploy-to-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: Print GitHub secret SECRET_1 with value secret_1_dev
+      run: "echo ${{ SECRET_1 }}"
 
     - name: Generate and validate kubernetes configuration file for dev environment
       run: "kubectl kustomize kustomize/overlays/dev"
+
+  deploy-to-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: Print GitHub secret SECRET_1 with value secret_1_prod
+      run: "echo ${{ SECRET_1 }}"
 
     - name: Generate and validate kubernetes configuration file for prod environment
       run: "kubectl kustomize kustomize/overlays/prod"
