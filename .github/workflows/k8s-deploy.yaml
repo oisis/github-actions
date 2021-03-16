@@ -1,0 +1,20 @@
+---
+name: Deplo some app to Kubernetes cluster
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repo with source code
+      uses: actions/checkout@v2
+
+    - name: Check if kubectl is on place
+      run: "kubectl version"
+    
+    - name: Generate and validate kubernetes configuration file for dev environment
+      run: "kubectl kustomize overlays/dev"
+
+    - name: Generate and validate kubernetes configuration file for prod environment
+      run: "kubectl kustomize overlays/prod"
