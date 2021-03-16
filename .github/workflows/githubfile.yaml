@@ -37,5 +37,5 @@ jobs:
     
     - name: Run some docker container in pipeline
       run: |-
-        docker run --name httpd httpd
+        docker run --name httpd -d --rm httpd
         docker ps -a
