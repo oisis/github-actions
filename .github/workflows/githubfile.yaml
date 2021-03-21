@@ -11,6 +11,7 @@ env:
 jobs:
   check-build-environment:
     runs-on: ubuntu-latest
+    environment: build
     steps:
     - name: Print OS env
       run: "env | sort"
