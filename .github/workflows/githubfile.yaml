@@ -27,6 +27,7 @@ jobs:
         docker version
         docker images
         docker ps
+        echo ${{ env.CI_SHA_SHORT }}
 
   build:
     runs-on: ubuntu-latest
