@@ -1,4 +1,4 @@
 # github-actions
 
-#### NodeJS-app:
+#### NodeJS-app example:
  From site: https://auth0.com/blog/create-a-simple-and-stylish-node-express-app/
